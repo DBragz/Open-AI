@@ -1,7 +1,7 @@
 import openai
 
 # Insert your own OpenAI API key here
-openai.api_key = ""
+openai.api_key = "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"
 
 # Prompt the user to enter a question
 question = input("What is your question for OpenAI?")
