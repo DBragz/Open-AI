@@ -1,7 +1,12 @@
+import configparser
 import openai
 
+# Load config file
+config = configparser.ConfigParser()
+config.read('config.ini')
+
 # Insert your own OpenAI API key here
-openai.api_key = ""
+openai.api_key = config['DEFAULT']['key']
 
 # Prompt the user to enter a question
 question = input("What is your question for OpenAI?")
