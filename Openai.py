@@ -25,7 +25,7 @@ while True:
         break
 
     # Make an API call to ChatGPT
-    response = client.completions.create(model="davinci-codex",
+    response = client.completions.create(model="gpt-3.5-turbo-instruct",
     prompt=f"You: {question}\n",
     max_tokens=150)
 
