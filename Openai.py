@@ -1,26 +1,34 @@
 import configparser
-import openai
+from openai import OpenAI
 
-# Load config file
+# Load secret key from config.ini
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-# Insert your own OpenAI API key here
-openai.api_key = config['DEFAULT']['key']
+# Ensure that the 'Credentials' section and 'secret_key' key exist in the config file
+if 'Credentials' not in config or 'secret_key' not in config['Credentials']:
+    raise ValueError("Please provide a valid secret key in config.ini")
 
-# Prompt the user to enter a question
-question = input("What is your question for OpenAI?")
+secret_key = config['Credentials']['secret_key']
 
-# Send the question to OpenAI and get the response
-response = openai.Completion.create(
-    engine="text-davinci-002",
-    prompt=question,
-    max_tokens=2048
-)
+client = OpenAI(api_key=secret_key)
 
-# Save the response to a text file
-with open("openai_response.txt", "w") as f:
-    f.write(response["choices"][0]["text"])
+# Set OpenAI API key
 
-print("The OpenAI response has been saved to openai_response.txt.")
+# Main loop to ask questions
+while True:
+    question = input("You: ")
+    
+    # Break the loop if the user types 'bye'
+    if question.lower() == 'bye':
+        print("Goodbye!")
+        break
+
+    # Make an API call to ChatGPT
+    response = client.completions.create(engine="davinci-codex",
+    prompt=f"You: {question}\n",
+    max_tokens=150)
+
+    # Display ChatGPT's response
+    print(f"ChatGPT: {response['choices'][0]['text'].strip()}")
 
