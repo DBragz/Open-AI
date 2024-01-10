@@ -1,3 +1,10 @@
+#!/usr/local/bin/python3
+
+"""
+    Creates a pixel image and displays it to the window.
+    Author: Daniel Ribeirinha-Braga
+"""
+
 # Create a pixel image and display to window
 import numpy as np
 import matplotlib.pyplot as plt
