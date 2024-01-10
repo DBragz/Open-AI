@@ -1,6 +1,6 @@
 # Open-AI
 
-Colaboaring with ChatGPT on software programs.
+Colaboarating with ChatGPT on software programs.
 
 ## Authors
 
